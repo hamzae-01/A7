@@ -365,7 +365,7 @@ public class OthelloWidget extends JPanel implements ActionListener, SpotListene
 		return false;
 	}
 
-
+//
 	public boolean hasLegalMoves(int color, Spot marker) {
 
 		Color possesor = marker.getSpotColor();
