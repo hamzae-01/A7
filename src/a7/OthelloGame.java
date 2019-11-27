@@ -23,7 +23,7 @@ public class OthelloGame {
 		/* Create ExampleWidget component and put into center
 		 * of content panel.
 		 */
-		
+		//
 		OthelloWidget ttt = new OthelloWidget();
 		top_panel.add(ttt, BorderLayout.CENTER);
 
