@@ -93,7 +93,6 @@ public class JSpotBoard extends JPanel implements SpotBoard {
 	}
 
 
-	// Getters for SpotWidth and SpotHeight properties
 	
 	@Override
 	public int getSpotWidth() {
@@ -105,7 +104,6 @@ public class JSpotBoard extends JPanel implements SpotBoard {
 		return _spots[0].length;
 	}
 
-	// Lookup method for Spot at position (x,y)
 	
 	@Override
 	public Spot getSpotAt(int x, int y) {

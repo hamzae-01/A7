@@ -332,29 +332,29 @@ public class TicTacToeWidget extends JPanel implements ActionListener, SpotListe
 
 
 public boolean checkDraw() {
-	int countBlacks = 0;
-	int countWhites = 0;
+	int blackAmount = 0;
+	int whiteAmount = 0;
 	
 	for (int x = 0; x < 3; x++) {
 		
 		for (int y = 0; y < 3; y++) {
 			
 			if (board.getSpotAt(x, y).getSpotColor() == Color.WHITE) {
-				countWhites++;
+				whiteAmount++;
 			}
 			
 			else if (board.getSpotAt(x, y).getSpotColor() == Color.BLACK && (board.getSpotAt(x, y).isEmpty() == false)) {
 				
-				countBlacks++;
+				blackAmount++;
 			}
 			
 		}
 		
-		System.out.println("Blacks " + countBlacks);
-		System.out.println("Whites " + countWhites);
+		System.out.println("Blacks " + blackAmount);
+		System.out.println("Whites " + whiteAmount);
 		
 		
-		if (countWhites == 5 && countBlacks == 4) {
+		if (whiteAmount == 5 && blackAmount == 4) {
 
 			drawGame = true;
 			gameWon = false;
