@@ -27,7 +27,7 @@ public class JSpotBoard extends JPanel implements SpotBoard {
 	private static final int DEFAULT_SCREEN_WIDTH = 500;
 	private static final int DEFAULT_SCREEN_HEIGHT = 500;
 	private static final Color DEFAULT_BACKGROUND_LIGHT = new Color(0.8f, 0.8f, 0.8f);
-	private static final Color DEFAULT_BACKGROUND_DARK = new Color(0.5f, 0.5f, 0.5f);
+	private static final Color DEFAULT_BACKGROUND_DARK = new Color(0.8f, 0.8f, 0.8f); //was.5
 	private static final Color DEFAULT_SPOT_COLOR = Color.BLACK;
 	private static final Color DEFAULT_HIGHLIGHT_COLOR = Color.YELLOW;
 
@@ -51,6 +51,47 @@ public class JSpotBoard extends JPanel implements SpotBoard {
 			}			
 		}
 	}
+	
+	
+	//ConnectFour Constructor
+	public JSpotBoard(int width, int height, Color C1, Color C2) {
+		if (width < 1 || height < 1 || width > 50 || height > 50) {
+			throw new IllegalArgumentException("Illegal spot board geometry");
+		}
+		setLayout(new GridLayout(height, width));
+		_spots = new Spot[width][height];
+		
+		Dimension preferred_size = new Dimension(DEFAULT_SCREEN_WIDTH/width, DEFAULT_SCREEN_HEIGHT/height);
+		
+		for (int y=0; y<height; y++) {
+			for (int x=0; x<width; x++) {
+				Color bg = ((x)%2 == 0) ? C1 : C2;
+				_spots[x][y] = new JSpot(bg, DEFAULT_SPOT_COLOR, DEFAULT_HIGHLIGHT_COLOR, this, x, y);
+				((JSpot)_spots[x][y]).setPreferredSize(preferred_size);
+				add(((JSpot) _spots[x][y]));
+			}			
+		}
+	}
+	
+	public JSpotBoard(int width, int height, Color defaultCol2) {
+		if (width < 1 || height < 1 || width > 50 || height > 50) {
+			throw new IllegalArgumentException("Illegal spot board geometry");
+		}
+		setLayout(new GridLayout(height, width));
+		_spots = new Spot[width][height];
+		
+		Dimension preferred_size = new Dimension(DEFAULT_SCREEN_WIDTH/width, DEFAULT_SCREEN_HEIGHT/height);
+		
+		for (int y=0; y<height; y++) {
+			for (int x=0; x<width; x++) {
+				Color bg = ((x+y)%2 == 0) ? DEFAULT_BACKGROUND_LIGHT : defaultCol2;
+				_spots[x][y] = new JSpot(bg, DEFAULT_SPOT_COLOR, DEFAULT_HIGHLIGHT_COLOR, this, x, y);
+				((JSpot)_spots[x][y]).setPreferredSize(preferred_size);
+				add(((JSpot) _spots[x][y]));
+			}			
+		}
+	}
+
 
 	// Getters for SpotWidth and SpotHeight properties
 	
@@ -75,7 +116,6 @@ public class JSpotBoard extends JPanel implements SpotBoard {
 		return _spots[x][y];
 	}
 	
-	// Convenience methods for (de)registering spot listeners.
 	
 	@Override
 	public void addSpotListener(SpotListener spot_listener) {
